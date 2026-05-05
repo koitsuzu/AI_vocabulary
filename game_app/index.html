@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>戰前整備 - 技術盤點</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Start Screen -->
+        <section id="start-screen" class="screen active">
+            <h1 class="title">戰前整備</h1>
+            <h2 class="subtitle">技術盤點 模擬訓練系統 v1.0</h2>
+            
+            <div class="rules-panel glass-panel">
+                <h3>演習規則 / RULES OF ENGAGEMENT</h3>
+                <ul>
+                    <li><span class="highlight-text">任務目標：</span> 聽取/閱讀中央傳輸框的解釋，在散落的名詞卡中找出對應的正確技術名稱。</li>
+                    <li><span class="highlight-text">計分機制：</span> 每一題限時 15 秒，越快答對分數越高 (最高 150 分)；答錯將扣除 20 分。</li>
+                    <li><span class="highlight-text">演習長度：</span> 系統將隨機抽測 10 題，題庫耗盡或達 10 題後結算。</li>
+                    <li><span class="highlight-text">敵手系統：</span> 可啟用 AI 對手進行搶答，反應過慢或答錯可能遭到系統 AI 擊敗。</li>
+                </ul>
+            </div>
+
+            <div class="settings">
+                <label>
+                    <input type="checkbox" id="voice-enable" checked>
+                    語音朗讀 (語音合成)
+                </label>
+                <label>
+                    <input type="checkbox" id="ai-opponent">
+                    啟用 AI 對手 (實驗性)
+                </label>
+            </div>
+            <button id="btn-start" class="cyber-button">開始演習 <span class="blink">_</span></button>
+        </section>
+
+        <!-- Game Screen -->
+        <section id="game-screen" class="screen">
+            <header class="hud">
+                <div class="player-info">
+                    <span class="label">PLAYER</span>
+                    <span class="score" id="player-score">000</span>
+                </div>
+                <div class="timer-container">
+                    <span class="label">TIME REMAINING</span>
+                    <div class="timer-bar">
+                        <div id="timer-fill"></div>
+                    </div>
+                </div>
+                <div class="player-info ai-info" id="ai-stats" style="display: none;">
+                    <span class="label">SYSTEM AI</span>
+                    <span class="score" id="ai-score">000</span>
+                </div>
+            </header>
+
+            <main>
+                <div id="card-container-top" class="card-grid">
+                    <!-- Top cards -->
+                </div>
+
+                <div class="transmission-box glass-panel">
+                    <div class="box-header">INCOMING TRANSMISSION...</div>
+                    <div id="meaning-display" class="typing-text"></div>
+                </div>
+
+                <div id="card-container-bottom" class="card-grid">
+                    <!-- Bottom cards -->
+                </div>
+            </main>
+
+            <!-- Feedback Overlay (Hidden by default) -->
+            <div id="feedback-overlay" class="feedback-overlay hidden">
+                <div class="feedback-card glass-panel">
+                    <div id="feedback-icon" class="feedback-icon"></div>
+                    <h2 id="feedback-title" class="feedback-title">正確！</h2>
+                    <div class="feedback-content">
+                        <h3 id="feedback-term" class="feedback-term">Term</h3>
+                        <p id="feedback-meaning" class="feedback-meaning">Meaning...</p>
+                    </div>
+                    <button id="btn-next" class="cyber-button">繼續演習 <span class="blink">_</span></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- End Screen -->
+        <section id="end-screen" class="screen">
+            <h1 class="end-title">演習結束</h1>
+            <div class="final-results">
+                <p>最終得分: <span id="final-score" class="highlight">0</span></p>
+                <p id="ai-result"></p>
+            </div>
+            <button id="btn-restart" class="cyber-button">重新啟動系統</button>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
